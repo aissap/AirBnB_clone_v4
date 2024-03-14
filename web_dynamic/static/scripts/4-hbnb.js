@@ -8,13 +8,6 @@ document.ready(function () {
 		}
 		$(".amenities h4").text(Object.keys(amenities).sort().join(", "));
 	});
-	$.getJSON("http://0.0.0.0:5001/api/v1/status/", (data) => {
-		if (data.status === "OK") {
-			$("div#api_status").addClass("available");
-		} else {
-			$("div#api_status").removeClass("available");
-		}
-	});
 	$.post({
 		url: `${HOST}/api/v1/places_search`,
 		data: JSON.stringify({}),
@@ -49,4 +42,6 @@ document.ready(function () {
 		},
 		dataType: "json",
 	});
+	$(".filters button").bind("click", searchPlace);
+	searchPlace();
 });
